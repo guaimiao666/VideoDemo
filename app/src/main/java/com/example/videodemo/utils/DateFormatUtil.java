@@ -1,4 +1,4 @@
-package com.example.videodemo;
+package com.example.videodemo.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

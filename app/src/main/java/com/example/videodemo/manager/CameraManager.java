@@ -1,4 +1,4 @@
-package com.example.videodemo;
+package com.example.videodemo.manager;
 
 import android.Manifest;
 import android.app.Activity;
@@ -11,6 +11,10 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 
 import androidx.core.app.ActivityCompat;
+
+import com.example.videodemo.MyApplication;
+import com.example.videodemo.utils.DateFormatUtil;
+import com.example.videodemo.utils.PathUtil;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -46,6 +50,10 @@ public class CameraManager {
             this.mCamera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
             this.cameraId = Camera.CameraInfo.CAMERA_FACING_BACK;
         }
+    }
+
+    public Camera getCamera() {
+        return mCamera;
     }
 
     public void startPreview(SurfaceHolder surfaceHolder) {

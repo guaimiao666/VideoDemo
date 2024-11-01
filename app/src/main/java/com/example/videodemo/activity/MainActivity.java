@@ -1,4 +1,4 @@
-package com.example.videodemo;
+package com.example.videodemo.activity;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,7 +16,9 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 
-import java.nio.file.Path;
+import com.example.videodemo.utils.PathUtil;
+import com.example.videodemo.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private final String TAG = getClass().getSimpleName();
     private final String[] permissions = {
-            Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.RECORD_AUDIO
     };
     private Button jumpVideoBtn;
 

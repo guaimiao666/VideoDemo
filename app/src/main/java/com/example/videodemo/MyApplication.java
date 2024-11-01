@@ -2,6 +2,8 @@ package com.example.videodemo;
 
 import android.app.Application;
 
+import com.example.videodemo.activity.VideoPreviewActivity;
+
 public class MyApplication extends Application {
 
     private VideoPreviewActivity videoPreviewActivity;

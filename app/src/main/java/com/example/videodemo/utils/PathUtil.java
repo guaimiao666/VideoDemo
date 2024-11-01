@@ -1,4 +1,4 @@
-package com.example.videodemo;
+package com.example.videodemo.utils;
 
 import android.os.Environment;
 import android.util.Log;

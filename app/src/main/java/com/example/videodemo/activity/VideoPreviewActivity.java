@@ -1,4 +1,4 @@
-package com.example.videodemo;
+package com.example.videodemo.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +8,14 @@ import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
+
+import com.example.videodemo.manager.CameraManager;
+import com.example.videodemo.utils.MediaRecorderUtil;
+import com.example.videodemo.MyApplication;
+import com.example.videodemo.R;
 
 public class VideoPreviewActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -69,11 +76,24 @@ public class VideoPreviewActivity extends AppCompatActivity implements View.OnCl
         takePictureBtn.setOnClickListener(this);
      }
 
+     private void setNewSurfaceUI() {
+         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) surfaceView.getLayoutParams();
+
+     }
+
+     private boolean isVideoRecord = false;
+
     @Override
     public void onClick(View v) {
         int id = v.getId();
         if (id == videoBtn.getId()) {
-
+            isVideoRecord = !isVideoRecord;
+            if (isVideoRecord) {
+                MediaRecorderUtil.getInstance(this).startRecord();
+            } else {
+                MediaRecorderUtil.getInstance(this).stopRecord();
+            }
+            videoBtn.setText(isVideoRecord ? "停止录像" : "录像");
         } else if (id == audioBtn.getId()) {
 
         } else if (id == takePictureBtn.getId()) {
