@@ -7,16 +7,37 @@
     android:background="@color/black"
     tools:context=".activity.VideoPreviewActivity">
 
-    <SurfaceView
-        android:id="@+id/video_preview_activity_surface"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/transparent">
+
+        <SurfaceView
+            android:id="@+id/video_preview_activity_surface"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent" />
+
+        <LinearLayout
+            android:id="@+id/video_preview_activity_record_time_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/video_preview_activity_record_time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="00:00:00"
+                android:textSize="12sp"
+                android:textColor="@android:color/holo_red_light"/>
+
+        </LinearLayout>
 
         <Button
             android:id="@+id/video_preview_activity_photo_button"
@@ -46,6 +67,26 @@
             android:layout_alignParentEnd="true"
             android:layout_margin="2dp"
             android:text="录音"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/video_preview_activity_switch_camera_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/video_preview_activity_photo_button"
+            android:layout_marginRight="2dp"
+            android:layout_toLeftOf="@id/video_preview_activity_photo_button"
+            android:text="切换摄像头"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/video_preview_activity_switch_flash_light"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/video_preview_activity_video_button"
+            android:layout_alignBottom="@id/video_preview_activity_video_button"
+            android:layout_marginEnd="2dp"
+            android:text="闪光灯"
             android:textSize="15sp" />
 
     </RelativeLayout>

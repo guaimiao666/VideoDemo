@@ -46,9 +46,9 @@ public class CameraManager {
             Log.d(TAG, "没有相机权限");
             return;
         }
-        if (existCamera(Camera.CameraInfo.CAMERA_FACING_BACK)) {
-            this.mCamera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
-            this.cameraId = Camera.CameraInfo.CAMERA_FACING_BACK;
+        if (existCamera(myApp.getCameraFacing())) {
+            this.mCamera = Camera.open(myApp.getCameraFacing());
+            this.cameraId = myApp.getCameraFacing();
         }
     }
 
@@ -145,6 +145,7 @@ public class CameraManager {
     public void releaseCamera() {
         if (mCamera == null)
             return;
+        mCamera.stopPreview();
         mCamera.release();
         mCamera = null;
     }
@@ -185,5 +186,34 @@ public class CameraManager {
                 startPreview(myApp.getVideoPreviewActivity().getSurfaceHolder());
             }
         });
+    }
+
+    public void switchCamera() {
+        if (mCamera != null) {
+            releaseCamera();
+        }
+        if (myApp.getCameraFacing() == Camera.CameraInfo.CAMERA_FACING_BACK) {
+            myApp.setCameraFacing(Camera.CameraInfo.CAMERA_FACING_FRONT);
+        } else if (myApp.getCameraFacing() == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+            myApp.setCameraFacing(Camera.CameraInfo.CAMERA_FACING_BACK);
+        }
+        openCamera();
+        startPreview(myApp.getVideoPreviewActivity().getSurfaceHolder());
+    }
+
+    public void switchFlash(boolean isOpen) {
+        Camera.Parameters parameters = mCamera.getParameters();
+        List<String> supportedFlashModes = parameters.getSupportedFlashModes();
+        for (String flashMode : supportedFlashModes) {
+            Log.d(TAG, "flashMode:" + flashMode);
+        }
+        if (isOpen) {
+            if (supportedFlashModes.contains(Camera.Parameters.FLASH_MODE_TORCH)) {
+                parameters.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+            }
+        } else {
+            parameters.setFlashMode(Camera.Parameters.FLASH_MODE_OFF);
+        }
+        mCamera.setParameters(parameters);
     }
 }
